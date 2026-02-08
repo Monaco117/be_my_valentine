@@ -1,189 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Be My Valentine 💘</title>
+<meta charset="UTF-8">
+<title>Be My Valentine 💘</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+  * {
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
 
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(180deg, #ffd1d1, #ffb3b3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(180deg, #ffd1d1, #ffb3b3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    /* CARD */
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      width: 330px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      z-index: 2;
-    }
+  /* MAIN CARD */
+  .card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 330px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 2;
+  }
 
-    h1 {
-      color: #d60000;
-      margin-bottom: 10px;
-    }
+  h1 { color: #d60000; }
 
-    p {
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
+  .buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
+  button {
+    padding: 12px 22px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
 
-    button {
-      padding: 12px 22px;
-      border-radius: 30px;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-    }
+  .yes { background: #e60023; color: white; }
+  .no { background: #ddd; }
 
-    .yes {
-      background: #e60023;
-      color: white;
-    }
+  /* SAD SCREEN */
+  .sad {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: url("sad.jpg") center/cover no-repeat;
+    z-index: 5;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+  }
 
-    .no {
-      background: #ddd;
-      color: #333;
-    }
+  .sad::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+  }
 
-    /* SAD SCREEN */
-    .sad-screen {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background-image: url("sad.jpg");
-      background-size: cover;
-      background-position: center;
-      align-items: center;
-      justify-content: center;
-      z-index: 5;
-    }
+  .sad-content {
+    position: relative;
+    z-index: 2;
+    font-size: 32px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+  }
 
-    .sad-screen::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-    }
+  .countdown {
+    margin-top: 20px;
+    font-size: 22px;
+  }
 
-    .sad-content {
-      position: relative;
-      z-index: 2;
-      background: rgba(0,0,0,0.6);
-      padding: 20px 30px;
-      border-radius: 20px;
-      color: white;
-      font-size: 28px;
-      text-align: center;
-      line-height: 1.4;
-    }
+  .sad-yes {
+    display: none;
+    margin-top: 25px;
+    background: #e60023;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-size: 18px;
+  }
 
-    /* GOAL SCREEN */
-    .goal-screen {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background-image: url("united.jpg");
-      background-size: cover;
-      background-position: center;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      color: white;
-      z-index: 6;
-    }
+  /* GOAL SCREEN */
+  .goal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: url("united.jpg") center/cover no-repeat;
+    z-index: 6;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+  }
 
-    .goal-screen::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.25);
-    }
+  .goal::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+  }
 
-    .goal-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
+  .goal-content {
+    position: relative;
+    z-index: 2;
+  }
 
-    .ball {
-      font-size: 60px;
-      animation: bounce 1s infinite;
-    }
+  .ball {
+    font-size: 60px;
+    animation: bounce 1s infinite;
+  }
 
-    @keyframes bounce {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-  </style>
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-25px); }
+  }
+</style>
 </head>
 
 <body>
 
-  <!-- CARD SCREEN -->
-  <div class="card" id="card">
-    <h1>Hi Babyyy ❤️</h1>
-    <p>
-      I ran all the calculations…<br>
-      the result is VERY clear 😌
-    </p>
+<!-- MAIN CARD -->
+<div class="card" id="card">
+  <h1>Hi Babyyy ❤️</h1>
+  <p>I ran all the calculations…<br>the result is VERY clear 😌</p>
+  <h3>Will you be my Valentine? 💘</h3>
 
-    <h3>Will you be my Valentine? 💘</h3>
-
-    <div class="buttons">
-      <button class="yes" onclick="yesClicked()">YES ❤️⚽</button>
-      <button class="no" onclick="noClicked()">NO 💔</button>
-    </div>
+  <div class="buttons">
+    <button class="yes" onclick="yesNow()">YES ❤️⚽</button>
+    <button class="no" onclick="noNow()">NO 💔</button>
   </div>
+</div>
 
-  <!-- SAD SCREEN -->
-  <div class="sad-screen" id="sad">
-    <div class="sad-content">
-      Ouchh… that hurts 🥺<br>
-      think again 💔
-    </div>
+<!-- SAD SCREEN -->
+<div class="sad" id="sad">
+  <div class="sad-content">
+    Ouchh… that hurts 🥺<br>
+    think again 💔
+    <div class="countdown" id="countdown">7</div>
+    <button class="sad-yes" id="sadYes" onclick="yesNow()">YES ❤️⚽</button>
   </div>
+</div>
 
-  <!-- GOAL SCREEN -->
-  <div class="goal-screen" id="goal">
-    <div class="goal-content">
-      <div class="ball">⚽</div>
-      <h1>VAMOS!!!</h1>
-      <h2>I scored you! ❤️⚽</h2>
-    </div>
+<!-- GOAL SCREEN -->
+<div class="goal" id="goal">
+  <div class="goal-content">
+    <div class="ball">⚽</div>
+    <h1>VAMOS!!!</h1>
+    <h2>I scored you! ❤️⚽</h2>
   </div>
+</div>
 
-  <script>
-    function noClicked() {
-      document.getElementById("card").style.display = "none";
-      document.getElementById("sad").style.display = "flex";
-    }
+<script>
+  function noNow() {
+    document.getElementById("card").style.display = "none";
+    document.getElementById("sad").style.display = "flex";
 
-    function yesClicked() {
-      document.getElementById("card").style.display = "none";
-      document.getElementById("sad").style.display = "none";
-      document.getElementById("goal").style.display = "flex";
-    }
-  </script>
+    let count = 7;
+    const cd = document.getElementById("countdown");
+    const btn = document.getElementById("sadYes");
+
+    const timer = setInterval(() => {
+      count--;
+      cd.innerText = count;
+      if (count === 0) {
+        clearInterval(timer);
+        cd.style.display = "none";
+        btn.style.display = "inline-block";
+      }
+    }, 1000);
+  }
+
+  function yesNow() {
+    document.getElementById("card").style.display = "none";
+    document.getElementById("sad").style.display = "none";
+    document.getElementById("goal").style.display = "flex";
+  }
+</script>
 
 </body>
 </html>
+
 
