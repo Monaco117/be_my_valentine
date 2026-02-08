@@ -130,6 +130,17 @@
     50% { transform: translateY(-25px); }
   }
 
+  /* FANCY VAMOS */
+  .vamos {
+    color: #ffffff;
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: "Georgia", "Times New Roman", serif;
+    text-shadow: 0 6px 20px rgba(0,0,0,0.7);
+  }
+
   /* HEART RAIN */
   .heart {
     position: fixed;
@@ -165,8 +176,8 @@
 <!-- SAD SCREEN -->
 <div class="sad" id="sad">
   <div class="sad-content">
-    Ouchh...that hurts... 🥺<br>
-    Think again (you got 7 second) 💔
+    Ouchh… that hurts 🥺<br>
+    think again 💔
     <div class="countdown" id="countdown">7</div>
     <button class="sad-yes" id="sadYes" onclick="yesNow()">YES ❤️⚽</button>
   </div>
@@ -176,7 +187,7 @@
 <div class="goal" id="goal">
   <div class="goal-content">
     <div class="ball">⚽</div>
-    <h1>VAMOS!!!</h1>
+    <h1 class="vamos">VAMOS!!!</h1>
     <h2>I scored you! ❤️⚽</h2>
   </div>
 </div>
@@ -222,7 +233,7 @@
       heart.className = "heart";
       heart.innerText = "❤️";
 
-      const size = Math.random() * 30 + 20; // big + small hearts
+      const size = Math.random() * 30 + 20;
       heart.style.fontSize = size + "px";
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = Math.random() * 3 + 3 + "s";
