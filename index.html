@@ -1,42 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Be My Valentine?</title>
-
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💘</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    * {
+      box-sizing: border-box;
+      font-family: "Arial", sans-serif;
     }
 
-    .card {
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      max-width: 420px;
-      z-index: 2;
+    }
+
+    .container {
+      padding: 20px;
     }
 
     h1 {
-      color: #c40000;
+      font-size: 36px;
+      margin-bottom: 20px;
     }
 
     button {
-      padding: 15px 30px;
+      padding: 12px 26px;
       font-size: 18px;
-      border: none;
       border-radius: 30px;
-      background-color: #c40000;
-      color: white;
+      border: none;
       cursor: pointer;
+      margin: 10px;
+    }
+
+    #yesBtn {
+      background: #e60023;
+      color: white;
+    }
+
+    #noBtn {
+      background: #ccc;
+      color: #333;
+    }
+
+    #message {
+      font-size: 20px;
       margin-top: 20px;
     }
 
@@ -48,15 +60,12 @@
       background-image: url("united.jpg");
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      color: white;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       flex-direction: column;
-      text-align: center;
+      color: white;
     }
 
-    /* Dark overlay for readability */
     .goal-screen::before {
       content: "";
       position: absolute;
@@ -64,62 +73,62 @@
       background: rgba(0, 0, 0, 0.25);
     }
 
-    .goal-screen > * {
+    .goal-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .ball {
-      font-size: 80px;
+      font-size: 60px;
       animation: bounce 1s infinite;
-      margin-bottom: 20px;
     }
 
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-30px); }
-    }
-
-    .goal-text {
-      font-size: 48px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .sub-text {
-      font-size: 24px;
+      50% { transform: translateY(-20px); }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="card" id="card">
-    <h1>Hi Babyyy ❤️</h1>
-    <p>
-      I ran all the calculations…<br>
-      the result is VERY clear 😌
-    </p>
-    <h2>Will you be my Valentine?</h2>
+  <!-- QUESTION SCREEN -->
+  <div class="container" id="question">
+    <h1>Will you be my Valentine? 💘</h1>
 
-    <button onclick="scoreGoal()">YES ❤️⚽</button>
+    <button id="yesBtn">YES ❤️</button>
+    <button id="noBtn">NO 💔</button>
+
+    <div id="message"></div>
   </div>
 
+  <!-- GOAL SCREEN -->
   <div class="goal-screen" id="goal">
-    <div class="ball">⚽</div>
-    <div class="goal-text">VAMOS!!!</div>
-    <div class="sub-text">I scored you! ❤️⚽</div>
+    <div class="goal-content">
+      <div class="ball">⚽</div>
+      <h1>VAMOS!!!</h1>
+      <h2>I scored you! ❤️⚽</h2>
+    </div>
   </div>
 
   <script>
-    function scoreGoal() {
-      document.getElementById("card").style.display = "none";
-      document.getElementById("goal").style.display = "flex";
-    }
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const message = document.getElementById("message");
+    const question = document.getElementById("question");
+    const goal = document.getElementById("goal");
+
+    noBtn.addEventListener("click", () => {
+      message.innerHTML = "🥺 That hurts… but think again?";
+    });
+
+    yesBtn.addEventListener("click", () => {
+      question.style.display = "none";
+      goal.style.display = "flex";
+    });
   </script>
 
 </body>
 </html>
-
 
  
