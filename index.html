@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine?</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      max-width: 420px;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #c40000;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      background-color: #c40000;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .goal-screen {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: #c40000;
+      color: white;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .goal-text {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .sub-text {
+      font-size: 24px;
+    }
+
+    .ball {
+      font-size: 80px;
+      animation: bounce 1s infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <h1>Hey ❤️</h1>
+    <p>
+      I ran all the calculations…<br>
+      and the result is very clear 😌
+    </p>
+    <h2>Will you be my Valentine?</h2>
+
+    <button onclick="scoreGoal()">YES ❤️⚽</button>
+  </div>
+
+  <div class="goal-screen" id="goal">
+    <div class="ball">⚽</div>
+    <div class="goal-text">VAMOS!!!</div>
+    <div class="sub-text">I scored you! ❤️</div>
+  </div>
+
+  <script>
+    function scoreGoal() {
+      document.getElementById("card").style.display = "none";
+      document.getElementById("goal").style.display = "flex";
+    }
+  </script>
+
+</body>
+</html>
+
+ 
