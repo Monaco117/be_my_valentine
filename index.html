@@ -3,53 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <title>Be My Valentine 💘</title>
+
   <style>
     * {
       box-sizing: border-box;
-      font-family: "Arial", sans-serif;
+      font-family: Arial, sans-serif;
     }
 
     body {
       margin: 0;
       height: 100vh;
-      background: #f5f5f5;
+      background: linear-gradient(180deg, #ffd1d1, #ffb3b3);
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
     }
 
-    .container {
-      padding: 20px;
+    /* CARD */
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
 
     h1 {
-      font-size: 36px;
+      color: #d60000;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
       margin-bottom: 20px;
     }
 
-    button {
-      padding: 12px 26px;
-      font-size: 18px;
-      border-radius: 30px;
-      border: none;
-      cursor: pointer;
-      margin: 10px;
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
     }
 
-    #yesBtn {
+    button {
+      padding: 12px 22px;
+      border-radius: 30px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .yes {
       background: #e60023;
       color: white;
     }
 
-    #noBtn {
-      background: #ccc;
+    .no {
+      background: #ddd;
       color: #333;
     }
 
-    #message {
-      font-size: 20px;
-      margin-top: 20px;
+    #sad {
+      margin-top: 15px;
+      font-size: 18px;
+      display: none;
     }
 
     /* GOAL SCREEN */
@@ -70,12 +87,13 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(0,0,0,0.25);
     }
 
     .goal-content {
       position: relative;
       z-index: 2;
+      text-align: center;
     }
 
     .ball {
@@ -84,7 +102,7 @@
     }
 
     @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
+      0%,100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
     }
   </style>
@@ -92,14 +110,22 @@
 
 <body>
 
-  <!-- QUESTION SCREEN -->
-  <div class="container" id="question">
-    <h1>Will you be my Valentine? 💘</h1>
+  <!-- CARD SCREEN -->
+  <div class="card" id="card">
+    <h1>Hi Babyyy ❤️</h1>
+    <p>
+      I ran all the calculations…<br>
+      the result is VERY clear 😌
+    </p>
 
-    <button id="yesBtn">YES ❤️</button>
-    <button id="noBtn">NO 💔</button>
+    <h3>Will you be my Valentine? 💘</h3>
 
-    <div id="message"></div>
+    <div class="buttons">
+      <button class="yes" onclick="yesClicked()">YES ❤️⚽</button>
+      <button class="no" onclick="noClicked()">NO 💔</button>
+    </div>
+
+    <div id="sad">🥺 Ouch!! That hurts... think again! </div>
   </div>
 
   <!-- GOAL SCREEN -->
@@ -112,20 +138,14 @@
   </div>
 
   <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const message = document.getElementById("message");
-    const question = document.getElementById("question");
-    const goal = document.getElementById("goal");
+    function noClicked() {
+      document.getElementById("sad").style.display = "block";
+    }
 
-    noBtn.addEventListener("click", () => {
-      message.innerHTML = "🥺 That hurts… but think again?";
-    });
-
-    yesBtn.addEventListener("click", () => {
-      question.style.display = "none";
-      goal.style.display = "flex";
-    });
+    function yesClicked() {
+      document.getElementById("card").style.display = "none";
+      document.getElementById("goal").style.display = "flex";
+    }
   </script>
 
 </body>
