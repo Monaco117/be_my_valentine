@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Be My Valentine 💘</title>
+<title>Be My Valentine ❤️</title>
 
 <style>
   * {
-    font-family: Arial, sans-serif;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
   }
 
   body {
@@ -17,9 +17,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
 
-  /* MAIN CARD */
+  /* CARD */
   .card {
     background: white;
     padding: 30px;
@@ -128,6 +129,22 @@
     0%,100% { transform: translateY(0); }
     50% { transform: translateY(-25px); }
   }
+
+  /* HEART RAIN */
+  .heart {
+    position: fixed;
+    top: -10vh;
+    z-index: 9999;
+    animation: floatDown linear forwards;
+    pointer-events: none;
+  }
+
+  @keyframes floatDown {
+    to {
+      transform: translateY(110vh);
+      opacity: 0;
+    }
+  }
 </style>
 </head>
 
@@ -148,8 +165,8 @@
 <!-- SAD SCREEN -->
 <div class="sad" id="sad">
   <div class="sad-content">
-    Ouchh… that hurts 🥺<br>
-    think again 💔
+    Ouchh...that hurts... 🥺<br>
+    Think again (you got 7 second) 💔
     <div class="countdown" id="countdown">7</div>
     <button class="sad-yes" id="sadYes" onclick="yesNow()">YES ❤️⚽</button>
   </div>
@@ -188,10 +205,34 @@
     document.getElementById("card").style.display = "none";
     document.getElementById("sad").style.display = "none";
     document.getElementById("goal").style.display = "flex";
+    startHeartRain();
+  }
+
+  function startHeartRain() {
+    const duration = 8000;
+    const end = Date.now() + duration;
+
+    const interval = setInterval(() => {
+      if (Date.now() > end) {
+        clearInterval(interval);
+        return;
+      }
+
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "❤️";
+
+      const size = Math.random() * 30 + 20; // big + small hearts
+      heart.style.fontSize = size + "px";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }, 120);
   }
 </script>
 
 </body>
 </html>
-
-
