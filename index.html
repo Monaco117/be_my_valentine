@@ -27,6 +27,7 @@
       width: 320px;
       text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      z-index: 2;
     }
 
     h1 {
@@ -63,10 +64,31 @@
       color: #333;
     }
 
-    #sad {
-      margin-top: 15px;
-      font-size: 18px;
+    /* SAD SCREEN */
+    .sad-screen {
       display: none;
+      position: fixed;
+      inset: 0;
+      background-image: url("sad.jpg");
+      background-size: cover;
+      background-position: center;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .sad-screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+    }
+
+    .sad-content {
+      position: relative;
+      z-index: 2;
+      font-size: 28px;
+      text-align: center;
     }
 
     /* GOAL SCREEN */
@@ -124,8 +146,14 @@
       <button class="yes" onclick="yesClicked()">YES ❤️⚽</button>
       <button class="no" onclick="noClicked()">NO 💔</button>
     </div>
+  </div>
 
-    <div id="sad">🥺 Ouch!! That hurts... think again! </div>
+  <!-- SAD SCREEN -->
+  <div class="sad-screen" id="sad">
+    <div class="sad-content">
+      Ouchhhhh!!!! That hurts...🥺<br>
+      Think again 💔
+    </div>
   </div>
 
   <!-- GOAL SCREEN -->
@@ -139,16 +167,18 @@
 
   <script>
     function noClicked() {
-      document.getElementById("sad").style.display = "block";
+      document.getElementById("sad").style.display = "flex";
     }
 
     function yesClicked() {
       document.getElementById("card").style.display = "none";
+      document.getElementById("sad").style.display = "none";
       document.getElementById("goal").style.display = "flex";
     }
   </script>
 
 </body>
 </html>
+
 
  
